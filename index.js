@@ -16,7 +16,7 @@ client.once('ready', () => {
     console.log(`ログイン完了: ${client.user.tag}`);
     // ボットのステータスを「オンライン」にして、プレイ中のゲームを設定する
     client.user.setPresence({
-        activities: [{ name: 'VCの監視中', type: ActivityType.Watching }],
+        activities: [{ name: 'zzz', type: ActivityType.Watching }],
         status: 'online',
     });
 });
