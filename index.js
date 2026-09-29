@@ -10,10 +10,16 @@ const client = new Client({
 // 通知用のチャンネルID
 const NOTIFY_CHANNEL_ID = '1554359083023212665';
 
+const { ActivityType } = require('discord.js'); // もし上の方にあったらそのまま、なければ追加
+
 client.once('ready', () => {
     console.log(`ログイン完了: ${client.user.tag}`);
+    // ボットのステータスを「オンライン」にして、プレイ中のゲームを設定する
+    client.user.setPresence({
+        activities: [{ name: 'VCの監視中', type: ActivityType.Watching }],
+        status: 'online',
+    });
 });
-
 client.on('voiceStateUpdate', (oldState, newState) => {
     if (newState.member.user.bot) return;
 
