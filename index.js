@@ -44,7 +44,17 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     else if (oldChannel && newChannel && oldChannel.id !== newChannel.id) {
         notifyChannel.send(`🟡 **${userName}** が (${oldChannel.name}) から (${newChannel.name}) に移動しました。`);
     }
+});// --- ここからミニサーバー（Renderを騙す用） ---
+const http = require('http');
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Bot is running!\n');
 });
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Dummy server is listening on port ${PORT}`);
+});
+// --- ここまで ---
 
 // Botのトークン
 client.login(process.env.DISCORD_TOKEN);
